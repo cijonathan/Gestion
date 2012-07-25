@@ -1,0 +1,49 @@
+<!-- [TOP] -->
+<div class="row abajo">
+    <div class="span4">
+        <img alt="" src="http://placehold.it/200x50">
+    </div>
+    <div class="span8">
+        <div class="row pull-right">
+            ¡ Bienvenido ! <strong>Juan Perez</strong><br />
+            <i class="icon-user"></i> <a href="<?php echo $this->url(array('module'=>'default','controller'=>'perfil','action'=>'index'),'',true);?>">Mi perfil</a> | 
+            <i class="icon-off"></i> <a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero','action'=>'cerrar'),'',true);?>">Cerrar sesión</a>
+        </div>
+    </div>
+</div> 
+<!-- [MENU] -->
+<div class="navbar abajo">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero','action'=>'index'),'',true);?>">Plataforma de Gestión</a>            
+            <ul class="nav">
+                <li class="divider-vertical"></li>                         
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Mantenedores<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-header">SISTEMA</li>   
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Región</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Provincia</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Comuna</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Bases</a></li>
+                        <li class="nav-header">CLIENTE</li>   
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Tipos</a></li>                                               
+                        <li class="nav-header">USUARIO</li>   
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Roles</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Cargos</a></li>                                                 
+                    </ul>                    
+                    <!--<ul class="dropdown-menu">
+                        <li class="nav-header">Listado</li>     
+                        <?php foreach($this->modulo as $retorno) :?>
+                            <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> <?php echo $retorno->nombre_modulo;?></a></li>                            
+                        <?php endforeach;?>                        
+                    </ul>
+                </li>                
+                <li class="divider-vertical"></li>                         
+                <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'usuario','action'=>'index'),'',true);?>">Usuarios</a></li>-->
+            </ul>
+        </div>
+    </div>            
+</div>

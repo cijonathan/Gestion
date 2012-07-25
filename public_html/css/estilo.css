@@ -1,0 +1,25 @@
+input.error,
+select.error,
+textarea.error{
+    border: 1px dashed #FF0000;
+}
+ .abajo{
+     margin-top: 10px
+ }
+ .abajo-bottom{
+     margin-bottom: 10px     
+ }
+ .centro{
+     text-align: center
+ }
+ .lado{
+     font-style: oblique;
+ }
+ .masgrande{
+     font-size: 15px;
+     letter-spacing: -1px;
+ }
+ .gris{
+     margin-top: 5px;
+     color: #999;
+ }
