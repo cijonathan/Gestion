@@ -5,7 +5,8 @@ class TableroController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $this->view->titulo = 'MODULOS';
+        $this->view->resumen = 'Modulos activos de la Extranet de gestión de Creatividad e Inteligencia';
     }
 
     public function indexAction()

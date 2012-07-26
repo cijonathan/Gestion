@@ -1,7 +1,7 @@
 input.error,
 select.error,
 textarea.error{
-    border: 1px dashed #FF0000;
+    border: 1px dashed #FF0000 !important;
 }
  .abajo{
      margin-top: 10px
