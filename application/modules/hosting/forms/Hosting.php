@@ -10,7 +10,7 @@ class Hosting_Form_Hosting extends Zend_Form
         /* CLIENTE */
         $cliente = new Zend_Form_Element_Select('id_cliente');
         $cliente->setRequired(true)
-                ->setAttrib('class','required span6')
+                ->setAttrib('class','required span4')
                 ->setLabel('Cliente:');        
         $cliente_db = new Hosting_Model_DbTable_Cliente();
         $cliente->addMultiOption(0,'');          
@@ -22,22 +22,22 @@ class Hosting_Form_Hosting extends Zend_Form
         $email = new Zend_Form_Element_Text('hosting_email_alternativo');
         $email->setRequired(true)
                 ->setLabel('Email:')
-                ->setAttrib('class','required email span6');
+                ->setAttrib('class','required email span4');
         /* DOMINIO */
         $dominio = new Zend_Form_Element_Text('dominio_hosting');
         $dominio->setRequired(true)
                 ->setLabel('Dominio (URL):')
-                ->setAttrib('class','required url span6');        
+                ->setAttrib('class','required url span4');        
         /* FECHA REGISTRO */
         $fecha = new Zend_Form_Element_Text('fecha_registro');
         $fecha->setRequired(true)
                 ->setLabel('Fecha registro:')
                 ->setValue(date('d-m-Y'))
-                ->setAttrib('class','required datepicker span6');        
+                ->setAttrib('class','required datepicker span4');        
         /* PLAN */
         $plan = new Zend_Form_Element_Select('id_plan');
         $plan->setRequired(true)
-                ->setAttrib('class','required span6')
+                ->setAttrib('class','required span4')
                 ->setLabel('Plan:');        
         $plan_db = new Hosting_Model_DbTable_Hostingplan();
         $plan->addMultiOption(0,'');        
@@ -47,7 +47,7 @@ class Hosting_Form_Hosting extends Zend_Form
         /* ESTADO */
         $estado = new Zend_Form_Element_Select('id_estado');
         $estado->setRequired(true)
-                ->setAttrib('class','required span6')
+                ->setAttrib('class','required span4')
                 ->setLabel('Estado:');        
         $estado_db = new Hosting_Model_DbTable_Hostingestado();
         $estado->addMultiOption(0,'');        

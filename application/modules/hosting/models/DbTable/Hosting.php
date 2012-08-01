@@ -33,7 +33,9 @@ class Hosting_Model_DbTable_Hosting extends Zend_Db_Table_Abstract
                 /* EMAIL */
                 $email = new Hosting_Model_Email();
                 if($parametro == 2){               
-                    $email->emailCronjob($parametro,$retorno->id_hosting);
+                    if($email->emailCronjob($parametro,$retorno->id_hosting)){
+                        $this->actualizaCrobro($retorno->id_hosting);
+                    }else return false;
                 }elseif($parametro == 5){                    
                     $email->emailCronjob($parametro,$retorno->id_hosting);
                 }elseif($parametro == 10){
@@ -65,6 +67,7 @@ class Hosting_Model_DbTable_Hosting extends Zend_Db_Table_Abstract
             /* DATOS */
             $fila = new stdClass();
             $fila->nombre = $datos->nombre_cliente;
+            $fila->email = $datos->email;
             $fila->dominio = str_replace('http://www.','',$datos->dominio);
             $fila->vencimiento = $fecha->toString('dd-MM-YYYY');
             $fila->periodo = $fecha->toString('YYYY').'/'.$fecha->addYear(1)->toString('YYYY');
@@ -96,10 +99,33 @@ class Hosting_Model_DbTable_Hosting extends Zend_Db_Table_Abstract
         }
         return $datos;
     }  
+    public function obtener($id_hosting){
+        if(is_numeric($id_hosting)){
+            $consulta = $this->select()
+                    ->setIntegrityCheck(false)
+                    ->from($this->_name,'*')
+                    ->where('id_hosting = ?',$id_hosting);
+            return $consulta->query()->fetch();
+        }else return false;
+    }
+    public function actualizar($datos,$id_hosting){
+        if(is_array($datos) && is_numeric($id_hosting)){
+            if($this->update($datos,'id_hosting = '.$id_hosting)) return true; else return false;
+        }else return false;
+    }
     public function eliminar($id_hosting){
         if(is_numeric($id_hosting)){
             if($this->delete('id_hosting = '.$id_hosting)) return true; else return false;
         }else return false;
     }
-
+    public function renovar($id_hosting){
+        if(is_numeric($id_hosting)){
+            /* OBTENER DATOS */
+            $datos = $this->obtener($id_hosting);
+            $fecha = new Zend_Date($datos['fecha_cobro'],'YYYY-MM-dd');                       
+            /* ACTUALIZAR */
+            $datos = array('fecha_registro'=>$datos['fecha_cobro'],'fecha_cobro'=>$fecha->addYear(1)->toString('YYYY-MM-dd'));
+            if($this->update($datos,'id_hosting = '.$id_hosting)) return true; else return false;
+        }else return false;
+    }
 }

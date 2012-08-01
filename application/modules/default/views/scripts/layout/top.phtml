@@ -24,25 +24,35 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="nav-header">SISTEMA</li>   
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Región</a></li>                         
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Provincia</a></li>                         
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Comuna</a></li>                         
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Bases</a></li>
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'region'),'',true);?>"><i class="icon-list-alt"></i> Región</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'provincia'),'',true);?>"><i class="icon-list-alt"></i> Provincia</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'comuna'),'',true);?>"><i class="icon-list-alt"></i> Comuna</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'area'),'',true);?>"><i class="icon-list-alt"></i> Áreas trabajo</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'subarea'),'',true);?>"><i class="icon-list-alt"></i> Subareas trabajo</a></li>                                                 
                         <li class="nav-header">CLIENTE</li>   
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Tipos</a></li>                                               
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'tipocliente'),'',true);?>"><i class="icon-list-alt"></i> Tipos</a></li>                                               
                         <li class="nav-header">USUARIO</li>   
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Roles</a></li>                         
-                        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> Cargos</a></li>                                                 
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'rol'),'',true);?>"><i class="icon-list-alt"></i> Roles</a></li>                         
+                        <li><a href="<?php echo $this->url(array('module'=>'mantenedor','controller'=>'cargo'),'',true);?>"><i class="icon-list-alt"></i> Cargos</a></li>                                                 
                     </ul>                    
                     <!--<ul class="dropdown-menu">
                         <li class="nav-header">Listado</li>     
                         <?php foreach($this->modulo as $retorno) :?>
                             <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'modulo','action'=>'index','id'=>$retorno->id_modulo),'',true);?>"><i class="icon-list-alt"></i> <?php echo $retorno->nombre_modulo;?></a></li>                            
                         <?php endforeach;?>                        
-                    </ul>
+                    </ul>-->
+                </li>                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Otros Módulos<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!--<li class="nav-header">SISTEMA</li>   -->
+                        <li><a href="<?php echo $this->url(array('module'=>'hosting','controller'=>'index'),'',true);?>"><i class="icon-list-alt"></i> Hosting</a></li>                                                                
+                    </ul>                    
                 </li>                
                 <li class="divider-vertical"></li>                         
-                <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'usuario','action'=>'index'),'',true);?>">Usuarios</a></li>-->
+                <li><a href="<?php echo $this->url(array('module'=>'usuario','controller'=>'index','action'=>'index'),'',true);?>">Usuarios</a></li>
             </ul>
         </div>
     </div>            

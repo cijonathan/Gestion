@@ -21,7 +21,7 @@ class Hosting_Model_Email
             /* ZEND_EMAIL */
             $email = new Zend_Mail();
             $email->setFrom('soporte@creatividadeinteligencia.cl','Creatividad e Inteligencia');
-            $email->addTo('jramirez@creatividadeinteligencia.cl','Jonathan Ramírez');
+            $email->addTo($datos->email,$datos->nombre);
             $email->setSubject('[HOSTING] Renovación de plan de hosting '.$datos->dominio);
             $email->setBodyHtml($cuerpo,'utf-8');           
             if($email->send()){
@@ -31,6 +31,27 @@ class Hosting_Model_Email
             }            
         }else return false;
         
+    }
+    public function emailCronjobCI($id_hosting){
+        if(is_numeric($id_hosting)){
+            /* DATOS HOSTING */
+            $hosting = new Hosting_Model_DbTable_Hosting();
+            $datos = $hosting->obtenerDatosCronjob($id_hosting);
+            /* CUERPO */
+            $cuerpo = 'Dar de baja a el hosting '.$datos->dominio.' - '.$datos->email.' - '.$datos->nombre;
+            /* ZEND_EMAIL */
+            $email = new Zend_Mail();
+            $email->setFrom('no-reply@creatividadeinteligencia.cl','Creatividad e Inteligencia');
+            $email->addTo('Aaron Hidalgo','ahidalgo@creatividadeinteligencia.cl');
+            $email->addTo('Jonathan Ramirez','jramirez@creatividadeinteligencia.cl');
+            $email->setSubject('[HOSTING] Dar de baja '.$datos->dominio);
+            $email->setBodyHtml($cuerpo,'utf-8');           
+            if($email->send()){
+                return true;
+            }else{
+                return false;
+            }               
+        }else return false;        
     }
 }
 

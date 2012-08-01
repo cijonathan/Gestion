@@ -41,14 +41,36 @@ class Hosting_IndexController extends Zend_Controller_Action
                 if($hosting->guardar($datos)){
                     $mensaje->exito = true;
                 }else{
-                    $mensaje->error = true;                    
+                    $mensaje->error = true;                  
                 }
                 $this->_redirect('/hosting/');
             }
         }
     }
     public function editarAction(){
-        
+        /* FORMULARIO */
+        $formulario = new Hosting_Form_Hosting();
+        $this->view->formulario = $formulario;   
+        /* new class */
+        $hosting = new Hosting_Model_DbTable_Hosting();        
+        /* [PROCESAR FORMULARIO] */
+        $respuesta = $this->getRequest();
+        if($respuesta->isPost()){ 
+            if($formulario->isValid($this->_request->getPost())){
+                $datos = $formulario->getValues();  
+                $mensaje = new Zend_Session_Namespace('mensaje');                 
+                if($hosting->actualizar($datos,$this->id_registro)){
+                    $mensaje->exito = true;                    
+                }else{
+                    $mensaje->error = true;                       
+                }
+                $this->_redirect('/hosting/');                
+            }            
+        }else{
+            $datos = $hosting->obtener($this->id_registro);
+            $formulario->populate($datos);
+            unset($datos);
+        }        
     }
     public function eliminarAction(){
         /* [DESAHIBILITAR LAYOUT y VIEW] */
@@ -56,12 +78,27 @@ class Hosting_IndexController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
         /* PROCESAR */      
         $hosting = new Hosting_Model_DbTable_Hosting();
+        $mensaje = new Zend_Session_Namespace('mensaje');           
         if($hosting->eliminar($this->id_registro)){
-            
-        }else{            
+            $mensaje->exito = true;            
+        }else{ 
+            $mensaje->error = true;             
         }
-        
+        $this->_redirect('/hosting/');        
     }
-
+    public function renovarAction(){
+        /* [DESAHIBILITAR LAYOUT y VIEW] */
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        /* PROCESAR */
+        $mensaje = new Zend_Session_Namespace('mensaje');           
+        $hosting = new Hosting_Model_DbTable_Hosting();
+        if($hosting->renovar($this->id_registro)){
+            $mensaje->exito = true;             
+        }else{
+            $mensaje->error = true;
+        }
+        $this->_redirect('/hosting/');        
+    }
 }
 

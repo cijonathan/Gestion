@@ -49,13 +49,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $vista->headLink()
                 ->appendStylesheet('/css/bootstrap-responsive.css')
                 ->appendStylesheet('/css/bootstrap.css')
-                ->appendStylesheet('/css/bootstrap.datepicker.css')                
+                ->appendStylesheet('/css/bootstrap.datepicker.css')  
+                ->appendStylesheet('/css/bootstrap.timepicker.css')                
                 ->appendStylesheet('/css/estilo.css');
         /* [JS] */
         $vista->headScript()
                 ->appendFile('/js/jquery.js') 
                 ->appendFile('/js/jquery.bootstrap.js') 
-                ->appendFile('/js/jquery.bootstrap.datepicker.js')                 
+                ->appendFile('/js/jquery.bootstrap.datepicker.js')
+                ->appendFile('/js/jquery.bootstrap.timepicker.js')                 
                 ->appendFile('/js/jquery.validate.js') 
                 ->appendFile('/js/jquery.ci.js'); 
         return $vista;
