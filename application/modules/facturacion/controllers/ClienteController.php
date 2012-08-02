@@ -86,6 +86,18 @@ class Facturacion_ClienteController extends Zend_Controller_Action
         $this->_redirect('/facturacion/cliente/');           
     }  
     public function relacionAction(){
+        /* [EXITO y ERROR] */
+        $mensaje = new Zend_Session_Namespace('mensaje');
+        $this->view->exito = $mensaje->exito;
+        $this->view->error = $mensaje->error;
+        $mensaje->setExpirationSeconds(1);
+        unset($mensaje);        
+        /* new class */
+        $asignacion = new Facturacion_Model_DbTable_Cliente();
+        /* LISTAR DATOS */        
+        $this->view->datos = $asignacion->listarRelacion($this->id_registro);
+        /* OBTENER DATOS CLIENTE */
+        $this->view->cliente = (object)$asignacion->obtener($this->id_registro);
         /* FORMULARIO */
         $formulario = new Facturacion_Form_Clienterelacion();
         $this->view->formulario = $formulario;        
@@ -97,18 +109,31 @@ class Facturacion_ClienteController extends Zend_Controller_Action
                 $datos['id_cliente'] = $this->id_registro;
                 /* new Class() */
                 $mensaje = new Zend_Session_Namespace('mensaje');                 
-                $asignacion = new Facturacion_Model_DbTable_Cliente();
                 if($asignacion->guadarRelacion($datos)){
                     $mensaje->exito = true;                    
                 }else{
                     $mensaje->error = true;                     
                 }
-                $this->_redirect('/facturacion/cliente/');                
+                $this->_redirect('/facturacion/cliente/relacion/id/'.$this->id_registro);                 
                 
             }   
         }
         
     }
-
+    public function eliminarelacionAction(){
+        /* [DESAHIBILITAR LAYOUT y VIEW] */
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        /* PROCESAR */      
+        $asignacion = new Facturacion_Model_DbTable_Cliente();
+        $mensaje = new Zend_Session_Namespace('mensaje');           
+        if($id = $asignacion->eliminaRelacion($this->id_registro)){
+            $mensaje->exito = true;            
+        }else{ 
+            $mensaje->error = true;             
+        }
+        $this->_redirect('/facturacion/cliente/relacion/id/'.$id);          
+        
+    }
 }
 

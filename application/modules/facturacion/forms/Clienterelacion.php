@@ -19,18 +19,23 @@ class Facturacion_Form_Clienterelacion extends Zend_Form
         }
         unset($retorno,$usuario_db);  
         /* TIPO */
-        $tipo = new Zend_Form_Element_Select('id_rol');
-        $tipo->setRequired(true)
+        $rol = new Zend_Form_Element_Select('id_rol');
+        $rol->setRequired(true)
                 ->setAttrib('class','required span4')
                 ->setLabel('Rol:');
-        $tipo->addMultiOptions(array(''=>'','1'=>'Director de Cuentas','2'=>'Ejecutivo de Cuentas','3'=>'Asistente de Cuentas'));
+        $rol_db = new Mantenedor_Model_DbTable_Rol();
+        $rol->addMultiOption(0,'');         
+        foreach($rol_db->listarRolCliente() as $retorno){
+            $rol->addMultiOption($retorno->id_rol,$retorno->nombre_rol);
+        }        
+        unset($retorno,$rol_db);  
 
         /* BOTON */
         $boton = new Zend_Form_Element_Submit('Enviar');
         $boton->setAttrib('class','btn btn-primary btn-large')
               ->setLabel('GUARDAR');
         
-        $this->addElements(array($usuario,$tipo,$boton));            
+        $this->addElements(array($usuario,$rol,$boton));            
     }
 
 

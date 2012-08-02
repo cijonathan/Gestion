@@ -12,6 +12,16 @@ class Mantenedor_Model_DbTable_Rol extends Zend_Db_Table_Abstract
                 ->order('id_rol');
         return $consulta->query()->fetchAll(Zend_Db::FETCH_OBJ);
     }
+    public function listarRolCliente(){
+        $consulta = $this->select()
+                ->setIntegrityCheck(false)
+                ->from($this->_name,'*')
+                ->where('id_rol = ?',3)
+                ->orWhere('id_rol = ?',4)
+                ->orWhere('id_rol = ?',5)
+                ->order('id_rol');
+        return $consulta->query()->fetchAll(Zend_Db::FETCH_OBJ);        
+    }
     public function guardar($datos){
         if(is_array($datos)){
             if($this->insert($datos)){

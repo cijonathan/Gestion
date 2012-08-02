@@ -7,8 +7,20 @@
 <ul class="breadcrumb">
     <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero'),'',true);?>/">Inicio</a> <span class="divider">/</span></li>
     <li><a href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'cliente'),'',true);?>/">Clientes</a> <span class="divider">/</span></li>
-    <li class="active">Asignar relación</li>
+    <li class="active">Asignar relación de <strong><?php echo $this->cliente->nombre_cliente;?></strong></li>
 </ul>
+<br /><br /> 
+<?php if ($this->error) : ?>
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h2>¡ERROR!</h2> No fue posible ejecutar esta acción, intenta nuevamente.
+    </div>   
+<?php elseif ($this->exito) : ?>   
+    <div class="alert alert-success">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h2>¡EXITO!</h2> Se ejecuto exitosamente esta acción.
+    </div>        
+<?php endif; ?>
 <div class="span5">
     <div class="well">
         <h3>COMPLETA FORMULARIO</h3>
@@ -16,5 +28,22 @@
     </div>
 </div>
 <div class="span6">
-    
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th width="30"></th>
+        </tr>
+    </thead>      
+    <tbody>
+        <?php foreach($this->datos as $retorno) :?>
+        <tr>
+            <td><?php echo $retorno->nombre;?></td>
+            <td><?php echo $retorno->rol;?></td>
+            <td><a class="btn btn-danger" href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'cliente','action'=>'eliminarelacion','id'=>$retorno->id),'',true);?>/"><i class="icon-trash icon-white"></i></a></td>
+        </tr>
+        <?php endforeach; unset($retorno);?>
+    </tbody>
+</table>        
 </div>     
