@@ -5,7 +5,7 @@
     </div>
     <div class="span8">
         <div class="row pull-right">
-            ¡ Bienvenido ! <strong>Juan Perez</strong><br />
+            ¡ Bienvenido ! <strong><?php echo $this->nombre_usuario;?></strong><br />
             <i class="icon-user"></i> <a href="<?php echo $this->url(array('module'=>'default','controller'=>'perfil','action'=>'index'),'',true);?>">Mi perfil</a> | 
             <i class="icon-off"></i> <a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero','action'=>'cerrar'),'',true);?>">Cerrar sesión</a>
         </div>
