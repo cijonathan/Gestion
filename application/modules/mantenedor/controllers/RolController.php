@@ -2,8 +2,9 @@
 
 class Mantenedor_RolController extends Zend_Controller_Action
 {
+    protected $id_registro;
 
-public function init()
+    public function init()
     {
         /* TITLE SECCIONES */
         $this->view->titulo = 'ROL';

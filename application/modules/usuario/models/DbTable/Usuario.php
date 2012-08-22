@@ -25,7 +25,7 @@ class Usuario_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
     public function listar(){
         $consulta = $this->select()
                 ->setIntegrityCheck(false)
-                ->from(array('u'=>'usuario'),array('id'=>'u.id_usuario','nombre'=>'u.nombre_usuario','email'=>'u.email_usuario'))
+                ->from(array('u'=>'usuario'),array('id'=>'u.id_usuario','nombre'=>'u.nombre_usuario','email'=>'u.email_usuario','clave'=>'u.clave_usuario'))
                 ->joinInner(array('uc'=>'usuario_cargo'),'u.id_cargo = uc.id_cargo',array('cargo'=>'uc.nombre_cargo'))
                 ->joinInner(array('ut'=>'usuario_tipo'),'u.id_tipo = ut.id_tipo',array('tipo'=>'ut.nombre_tipo'));
         return $consulta->query()->fetchAll(Zend_Db::FETCH_OBJ);

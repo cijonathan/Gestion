@@ -1,0 +1,99 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        /* LABEL BUTTON */
+        $('#login span label[for="submit"]').css({'display' : 'none','visibility' : 'hidden'});
+        /* SELECT * DEPENDIENTE */
+        $('select#id_cliente').change(function(){
+		$.getJSON('/timesheet/index/obtener/',{id : $("select#id_cliente").val()},function(data){                    
+                    var opciones = '';
+                    opciones = '<option value=""> </option>';   
+                    for (var i = 0; i < data.length; i++) {
+                        opciones += '<option value="' + data[i].id_proyecto + '">' + data[i].nombre_proyecto + '</option>';                        
+                    }
+                    $('select#id_proyecto').attr('disabled',false);
+                    $('select#id_proyecto').html(opciones);
+                });         
+        });
+    });
+</script>
+<div class="page-header">
+    <h1><?php echo $this->titulo;?><br /><small><?php echo $this->resumen;?></small></h1>
+</div>
+<ul class="breadcrumb">
+    <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero'),'',true);?>/">Inicio</a> <span class="divider">/</span></li>
+    <li class="active">Timesheet</li>
+</ul>
+<br /><br /> 
+<?php if ($this->error) : ?>
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h2>¡ERROR!</h2> No fue posible ejecutar esta acción, intenta nuevamente.
+    </div>   
+<?php elseif ($this->exito) : ?>   
+    <div class="alert alert-success">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h2>¡EXITO!</h2> Se ejecuto exitosamente esta acción.
+    </div>        
+<?php endif; ?>
+<div class="row-fluid">
+    <div class="pull-left">
+        <h2><?php echo $this->hoy;?></h2>
+    </div>
+    <div class="pull-right">
+        <strong>Hoy llevas <strong class="label label-important"><?php echo $this->horas;?></strong> horas trabajadas</strong>
+    </div>
+</div>
+<?php if($this->horas < '09:00:00') :?>
+<div class="well well-small">
+    <?php echo $this->formulario;?>
+</div>
+<?php endif;?>
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Proyecto</th>
+            <th>Área</th>
+            <th>Horas</th>
+            <th width="40"></th>
+        </tr>
+    </thead>        
+    <tbody>
+        <?php foreach($this->datos as $retorno) :?>      
+        <tr>
+            <td><?php echo $retorno->cliente;?></td>
+            <td><?php echo $retorno->proyecto;?></td>
+            <td><?php echo $retorno->actividad;?></td>
+            <td>0<?php echo $retorno->hora;?>:00</td>
+            <td><a href="<?php echo $this->url(array('module'=>'timesheet','controller'=>'index','action'=>'eliminar','id'=>$retorno->id),'',true);?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a></td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table><br /><br />
+<div class="row-fluid">
+    <div class="pull-left">
+        <h2>El resto de los días</h2>
+    </div>
+</div>
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th width="80">Fecha</th>
+            <th>Cliente</th>
+            <th>Proyecto</th>
+            <th>Área</th>
+            <th>Horas</th>
+        </tr>
+    </thead>        
+    <tbody>
+        <?php foreach($this->otros as $retorno) :?>      
+        <tr>
+            <td><?php echo $retorno->fecha;?></td>
+            <td><?php echo $retorno->cliente;?></td>
+            <td><?php echo $retorno->proyecto;?></td>
+            <td><?php echo $retorno->actividad;?></td>
+            <td>0<?php echo $retorno->hora;?>:00</td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

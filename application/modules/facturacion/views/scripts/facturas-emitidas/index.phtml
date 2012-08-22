@@ -1,0 +1,59 @@
+<div class="page-header">
+    <h1><?php echo $this->titulo;?><br /><small><?php echo $this->resumen;?></small></h1>
+</div>
+
+<!-- BOTONERA FACTURACION -->
+<div class="pull-right">
+    <?php echo $this->action('top','layout','facturacion');?>
+</div><br /><br />
+
+<!-- BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero'),'',true);?>/">Inicio</a> <span class="divider">/</span></li>
+    <li><a href="<?php echo $this->url(array('module'=>'facturacion'),'',true);?>/">Facturación</a> <span class="divider">/</span></li>
+    <li class="active">Facturas emitidas</li>
+</ul>
+
+<!-- INGRESAR FACTURA -->
+<a href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'facturas-emitidas','action'=>'nueva-factura'),'',true);?>/" class="pull-right btn btn-success"><i class="icon-white icon-plus"></i> Nueva Factura</a><br /><br />
+
+<!-- LISTADO DE FACTURAS RECIBIDAS -->
+<div id="contenedor-datatables">
+<table class="table table-striped table-bordered table-condensed" id="datatable">
+    <thead>
+        <tr class="table-title">
+            <th class="no_sort">ID</th>
+            <th>Folio</th>
+            <th>Cliente</th>
+            <th>Fecha Emisión</th>
+            <th>Fecha Pago</th>
+            <th width="75">Estado</th>
+            <th width="180" class="no_sort">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>9999</td>
+            <td>9999</td>
+            <td>Creatividad e Inteligencia</td>
+            <td>02/08/2012</td>
+            <td>02/08/2012</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-success"><i class="icon-white icon-check"></i></button>
+                    <a href="#" class="btn btn-info"><i class="icon-white icon-info-sign"></i></a>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'facturas-emitidas','action'=>'editar-factura','id'=>1234),'',true);?>/" class="btn"><i class="icon-pencil"></i></a>
+                    <a href="#" class="btn"><i class="icon-picture"></i></a>
+                    <a href="#" class="btn"><i class="icon-comment"></i></a>
+                    <a href="#" class="btn"><i class="icon-remove"></i></a>
+                    <a href="#" class="btn"><i class="icon-search"></i></a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

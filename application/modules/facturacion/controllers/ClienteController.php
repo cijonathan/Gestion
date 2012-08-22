@@ -23,7 +23,7 @@ class Facturacion_ClienteController extends Zend_Controller_Action
         unset($mensaje);
         /* LISTAR */
         $cliente = new Facturacion_Model_DbTable_Cliente();
-        $this->view->datos = $cliente->listar();        
+        $this->view->datos = $cliente->listar(1);        
     }
     public function agregarAction()
     {

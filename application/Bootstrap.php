@@ -61,6 +61,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 ->appendFile('/js/jquery.validate.js') 
                 ->appendFile('/js/jquery.ci.js'); 
         return $vista;
-    }  
+    } 
 }
 

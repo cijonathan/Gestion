@@ -24,28 +24,45 @@ class Model_Acl  extends Zend_Acl
         $this->add(new Zend_Acl_Resource('mantenedor:subarea'));
         $this->add(new Zend_Acl_Resource('mantenedor:tipocliente'));
         $this->add(new Zend_Acl_Resource('mantenedor:rol'));
+        $this->add(new Zend_Acl_Resource('mantenedor:actividad'));
+        $this->add(new Zend_Acl_Resource('mantenedor:proyecto'));
         $this->add(new Zend_Acl_Resource('mantenedor:cargo'));
         $this->add(new Zend_Acl_Resource('facturacion:index'));
         $this->add(new Zend_Acl_Resource('facturacion:cliente'));
+        $this->add(new Zend_Acl_Resource('facturacion:proveedor'));
+        $this->add(new Zend_Acl_Resource('facturacion:gantt'));
+        $this->add(new Zend_Acl_Resource('facturacion:facturas-emitidas'));
         $this->add(new Zend_Acl_Resource('brief:index'));
+        $this->add(new Zend_Acl_Resource('brief:of')); 
+        $this->add(new Zend_Acl_Resource('brief:oc')); 
+        $this->add(new Zend_Acl_Resource('timesheet:index')); 
+        $this->add(new Zend_Acl_Resource('timesheet:aviso')); 
 
         # [PERMISOS]
         $this->deny('visitante');
-        $this->allow('visitante',array('default:index','default:error','hosting:cronjob'));        
+        $this->allow('visitante',array('default:index','default:error','hosting:cronjob','timesheet:aviso'));        
         $this->deny('basico',array('hosting:index'));
-        $this->allow('basico',array('default:tablero','default:perfil'));
+        $this->allow('basico',array('default:tablero','default:perfil','timesheet:index'));
         $this->allow('administrador',
                 array('hosting:index',
                     'usuario:index',
+                    'mantenedor:region',
                     'mantenedor:provincia',
                     'mantenedor:comuna',
                     'mantenedor:area',
                     'mantenedor:subarea',
                     'mantenedor:tipocliente',
+                    'mantenedor:actividad',
+                    'mantenedor:proyecto',
                     'mantenedor:rol',
                     'mantenedor:cargo',
                     'facturacion:index',
                     'facturacion:cliente',
-                    'brief:index'));        
+                    'facturacion:proveedor',
+                    'facturacion:gantt',
+                    'facturacion:facturas-emitidas',
+                    'brief:index',
+                    'brief:of',
+                    'brief:oc'));        
     }
 }

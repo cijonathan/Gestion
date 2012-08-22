@@ -1,9 +1,6 @@
 <div class="page-header">
     <h1><?php echo $this->titulo;?><br /><small><?php echo $this->resumen;?></small></h1>
 </div>
-<div class="pull-right">
-    <?php echo $this->action('top','layout','facturacion');?>
-</div><br /><br />
 <ul class="breadcrumb">
     <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'tablero'),'',true);?>/">Inicio</a> <span class="divider">/</span></li>
     <li><a href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'cliente'),'',true);?>/">Clientes</a> <span class="divider">/</span></li>

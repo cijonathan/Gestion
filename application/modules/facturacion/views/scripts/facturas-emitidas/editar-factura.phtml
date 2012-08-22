@@ -1,0 +1,35 @@
+<div class="page-header">
+    <h1><?php echo $this->titulo;?><br /><small><?php echo $this->resumen;?></small></h1>
+</div>
+
+<!-- BOTONERA FACTURACION -->
+<div class="pull-right">
+    <?php echo $this->action('top','layout','facturacion');?>
+</div><br /><br />
+
+<!-- BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="<?php echo $this->url(array('module'=>'tablero','controller'=>'tablero'),'',true);?>/">Inicio</a> <span class="divider">/</span></li>
+    <li><a href="<?php echo $this->url(array('module'=>'facturacion'),'',true);?>/">Facturación</a> <span class="divider">/</span></li>
+    <li><a href="<?php echo $this->url(array('module'=>'facturacion','controller'=>'facturas-emitidas'),'',true);?>/">Facturas Emitidas</a> <span class="divider">/</span></li>
+    <li class="active">Editar factura: Folio N° 1234</li>
+</ul>
+
+<div class="well">
+	<?php echo $this->formulario; ?>
+</div>
+
+
+<!-- LIBRERIAS -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#form-factura').validate({
+		errorPlacement: function(){ return false; },
+		highlight: function(element, errorClass){ $(element).parent().parent().addClass('error'); },
+		unhighlight: function(element, errorClass){ $(element).parent().parent().removeClass('error'); },
+		submitHandler: function(form){
+			alert("HOLA");	
+		}
+	});
+});
+</script>
